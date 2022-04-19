@@ -1,5 +1,6 @@
-import logo from './logo.svg';
+import logo from 'assets/logo.svg';
 import './App.css';
+console.log('Elo');
 
 function App() {
   return (
@@ -21,5 +22,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
