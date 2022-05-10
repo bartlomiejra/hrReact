@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 // import { ReactComponent as DeleteIcon } from 'assets/icons/delete-icon.svg';
-
+import { Button } from 'components/atoms/Button/Button';
 const Wrapper = styled.li`
   display: flex;
   align-items: center;
@@ -22,8 +22,9 @@ const UsersListItem = ({ userData: { average, name, attendance = '0%' } }) => (
     <div>{average}</div>
     <div>
       <p> {name}</p>
-      <p>{attendance}</p>
+      <p>attendance: {attendance}</p>
     </div>
+    <Button>X</Button>
   </Wrapper>
 );
 UsersListItem.propTypes = {
