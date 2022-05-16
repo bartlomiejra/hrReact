@@ -1,32 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-// import { ReactComponent as DeleteIcon } from 'assets/icons/delete-icon.svg';
-import { Button } from 'components/atoms/Button/Button';
-const Wrapper = styled.li`
-  display: flex;
-  align-items: center;
-  position: relative;
-  &:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #e5e5e5;
-  }
-`;
+import Button from 'components/atoms/Button/Button';
+import { StyledAverage, StyledInfo, Wrapper } from './UsersListItem.styles';
 
 const UsersListItem = ({ userData: { average, name, attendance = '0%' } }) => (
   <Wrapper>
-    <div>{average}</div>
-    <div>
-      <p> {name}</p>
+    <StyledAverage value={average}>{average}</StyledAverage>
+    <StyledInfo>
+      <p>
+        {name}
+        <Button />
+      </p>
       <p>attendance: {attendance}</p>
-    </div>
-    <Button>X</Button>
+    </StyledInfo>
   </Wrapper>
 );
+
 UsersListItem.propTypes = {
   userData: PropTypes.shape({
     average: PropTypes.string.isRequired,
@@ -34,4 +23,5 @@ UsersListItem.propTypes = {
     attendance: PropTypes.string,
   }),
 };
+
 export default UsersListItem;
