@@ -13,5 +13,4 @@ const Root = () => (
     </Wrapper>
   </ThemeProvider>
 );
-
 export default Root;
