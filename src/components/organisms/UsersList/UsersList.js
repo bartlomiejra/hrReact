@@ -3,29 +3,51 @@ import { users } from 'data/users';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
 import { StyledList, Wrapper } from './UsersList.styles';
 
+const mockApi = (success) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (users) {
+        resolve([...users]);
+      } else {
+        reject({ message: 'Error' });
+      }
+    }, 2000);
+  });
+};
 class UsersList extends React.Component {
   state = {
-    isUsersList: true,
+    users: [],
+    isLoading: false,
   };
 
-  toggleListTitle = () => {
-    this.setState((prevState) => ({ isUsersList: prevState.isUsersList }));
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    mockApi().then((data) => {
+      this.setState({ isLoading: false });
+      this.setState({ users: data });
+    });
+  }
+
+  componentDidUpdate(prevState) {
+    if (prevState.isLoading !== this.state.isLoading) {
+      console.log('Loading state has changed');
+    }
+  }
+
+  deleteUser = (name) => {
+    const filteredUsers = this.state.users.filter((user) => user.name !== name);
+    this.setState({ users: filteredUsers });
   };
   render() {
-    //jeśli chcsz dokonać dstrokturyzacji w klasowym komonecie to najlepiej użyć desturkturyzacji wewnatrz funkcji render:
-    const { title } = this.props;
-    // jeśli trzeba coś wyciągnać ze stanu to:
-    const { isUsersList } = this.state;
-    //w ten sposób można wykorzystywać krótszych form w jsx, przykład poniżej w pierwszym h1
     return (
       <Wrapper>
-        <h1>{title}</h1>
-        <h1>{this.props.title}</h1>
-        <h1>{this.props.isUsersList ? `User's List` : 'Students List'}</h1>
+        <h1>{this.state.isLoading ? 'Loading' : 'Users List'} </h1>
+        {/* <h1>{this.props.title}</h1> */}
+        {/* <h1>{this.props.isUsersList ? `User's List` : 'Students List'}</h1> */}
         <button onClick={this.toggleListTitle}>Change title</button>
         <StyledList>
-          {users.map((userData, i) => (
-            <UsersListItem index={i} key={userData.name} userData={userData} />
+          {this.state.users.map((userData, i) => (
+            <UsersListItem deleteUser={this.deleteUser} index={i} key={userData.name} userData={userData} />
           ))}
         </StyledList>
       </Wrapper>
