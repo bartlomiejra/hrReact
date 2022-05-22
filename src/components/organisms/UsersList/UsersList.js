@@ -41,9 +41,6 @@ const UsersList = () => {
   return (
     <Wrapper>
       <h1>{isLoading ? 'Loading' : 'Users List'} </h1>
-      {/* <h1>{this.props.title}</h1> */}
-      {/* <h1>{this.props.isUsersList ? `User's List` : 'Students List'}</h1> */}
-      {/* <button onClick={this.toggleListTitle}>Change title</button> */}
       <StyledList>
         {usersData.map((userData) => (
           <UsersListItem deleteUser={deleteUser} key={userData.name} userData={userData} />
