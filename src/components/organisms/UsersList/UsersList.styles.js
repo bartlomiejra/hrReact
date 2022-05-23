@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  margin: 50px;
   background-color: ${({ theme }) => theme.colors.white};
   width: 100%;
   max-width: 500px;
@@ -13,4 +14,10 @@ export const StyledList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
+`;
+
+export const StyledTitle = styled.h1`
+  margin: 0;
+  padding: 0;
+  color: ${({ theme }) => theme.colors.darkGrey};
 `;
