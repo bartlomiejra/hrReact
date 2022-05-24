@@ -1,22 +1,24 @@
-import { Input } from 'components/atoms/Input/input';
-import { Label } from 'components/atoms/Label/label';
 import React from 'react';
-import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { Label } from 'components/atoms/Label/Label';
+import { Input } from 'components/atoms/Input/Input';
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
   ${Label} {
-    margin: 5px;
+    margin: 10px 0;
   }
 `;
-const FormField = ({ onChange, value, label, name, id, type = 'text', ...props }) => {
+
+const FormField = ({ onChange, value, label, name, id, type = 'text' }) => {
   return (
     <Wrapper>
       <Label htmlFor={id}>{label}</Label>
-      <Input name={name} id={id} type={type} onChange={onChange}></Input>
+      <Input name={name} id={id} type={type} value={value} onChange={onChange} />
     </Wrapper>
   );
 };
@@ -27,4 +29,5 @@ FormField.propTypes = {
   id: PropTypes.string.isRequired,
   type: PropTypes.string,
 };
+
 export default FormField;

@@ -1,11 +1,6 @@
 import React from 'react';
 import { ReactComponent as DeleteIcon } from 'assets/icons/delete-icon.svg';
-import { StyledButton } from './DeleteButton.styles';
-
-// 'click' onClick
-// 'mousenter'onMouseEnter
-
-//react.createElement('button', { onClick: () => alert('clicked') }, 'Click me');
+import { StyledButton } from 'components/atoms/DeleteButton/DeleteButton.styles';
 
 const DeleteButton = (props) => (
   <StyledButton {...props}>

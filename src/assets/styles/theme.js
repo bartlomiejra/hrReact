@@ -8,10 +8,11 @@ export const theme = {
     success: '#8FCB81',
     error: '#CB8581',
     warning: '#E1D888',
-    darkPurple: '#c0c7d6',
-    lightPurple: '#eceff7',
+    darkPurple: '#C0C7D6',
+    lightPurple: '#ECEFF7',
   },
   fontSize: {
+    xl: '24px',
     l: '17px',
     m: '12px',
     s: '11px',
