@@ -13,8 +13,12 @@ const Navigation = () => {
       </Logo>
       <StyledLink to="/">Dashboard</StyledLink>
       <StyledLink to="/add-user">Add user</StyledLink>
-      <StyledLink to="/">Settings</StyledLink>
-      <StyledLink to="/">Logout</StyledLink>
+      {/* <StyledLink ClassName="active-link" to="/">
+        Settings
+      </StyledLink>
+      <StyledLink ClassName="active-link" to="/">
+        Logout
+      </StyledLink> */}
     </Wrapper>
   );
 };

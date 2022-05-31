@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'assets/styles/GlobalStyle';
 import { theme } from 'assets/styles/theme';
@@ -10,57 +10,22 @@ import { users as usersData } from 'data/users';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import AddUser from 'views/AddUser';
 import Dashboard from 'views/Dashboard';
-
-const initialFormState = {
-  name: '',
-  attendance: '',
-  average: '',
-};
-
+import UsersPrivider from 'providers/UsersPrivider';
 const Root = () => {
-  const [users, setUsers] = useState(usersData);
-  const [formValues, setFormValues] = useState(initialFormState);
-
-  const deleteUser = (name) => {
-    const filteredUsers = users.filter((user) => user.name !== name);
-    setUsers(filteredUsers);
-  };
-
-  const handleInputChange = (e) => {
-    console.log(formValues);
-    setFormValues({
-      ...formValues,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleAddUser = (e) => {
-    e.preventDefault();
-    const newUser = {
-      name: formValues.name,
-      attendance: formValues.attendance,
-      average: formValues.average,
-    };
-
-    setUsers([newUser, ...users]);
-    setFormValues(initialFormState);
-  };
-
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <MainTemplate>
-          <Wrapper>
-            <Routes>
-              <Route
-                path="/add-user"
-                element={<AddUser formValues={formValues} handleAddUser={handleAddUser} handleInputChange={handleInputChange} />}
-              />
+          <UsersPrivider>
+            <Wrapper>
+              <Routes>
+                <Route path="/add-user" element={<AddUser />} />
 
-              <Route path="/" element={<Dashboard deleteUser={deleteUser} users={users} />} />
-            </Routes>
-          </Wrapper>
+                <Route path="/" element={<Dashboard />} />
+              </Routes>
+            </Wrapper>
+          </UsersPrivider>
         </MainTemplate>
       </ThemeProvider>
     </Router>

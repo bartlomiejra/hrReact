@@ -27,11 +27,32 @@ export const Logo = styled.div`
     margin-right: 20px;
   }
 `;
-
-export const StyledLink = styled(Link)`
+const active = 'active';
+export const StyledLink = styled(NavLink).attrs({ active })`
   font-weight: bold;
   text-decoration: none;
   color: ${({ theme }) => theme.colors.darkGrey};
   text-align: right;
   margin: 15px 20px 15px auto;
+  position: realtive;
+
+  &.${active} {
+    &::after {
+      opacity: 1;
+      color: red;
+    }
+  }
+
+  &::after {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -20px;
+    background-color: ${({ theme }) => theme.colors.darkPurple};
+  }
 `;
