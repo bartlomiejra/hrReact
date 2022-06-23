@@ -15,6 +15,9 @@ const SearchBarWrapper = styled.div`
 
   ${Input} {
     font-size: ${({ theme }) => theme.fontSize.xl};
+    width: 100px;
+    max-width: 350px;
+    border: 2px solod ${({ theme }) => theme.colors.lightPurple};
   }
 `;
 
