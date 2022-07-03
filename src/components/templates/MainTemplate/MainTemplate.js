@@ -4,6 +4,7 @@ import React from 'react';
 import { Input } from 'components/atoms/Input/Input';
 import { Wrapper } from 'components/templates/MainTemplate/MainTemplate.styles';
 import { SearchBar } from '../../organisms/SearchBar/SearchBar';
+import NewsSection from '../NewsSection/NewsSection';
 
 const MainTemplate = ({ children }) => {
   return (
@@ -11,13 +12,7 @@ const MainTemplate = ({ children }) => {
       <Navigation />
       <SearchBar />
       {children}
-      <News>
-        <p>Lorem imsum</p>
-        <p>Lorem imsum</p>
-        <p>Lorem imsum</p>
-        <p>Lorem imsum</p>
-        <p>Lorem imsum</p>
-      </News>
+      <NewsSection />
     </Wrapper>
   );
 };
