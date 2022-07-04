@@ -30,5 +30,5 @@ describe('News Section', () => {
 
     renderWithProviders(<NewsSection />);
     await screen.findAllByText(/Test/);
+    
   });
-});
