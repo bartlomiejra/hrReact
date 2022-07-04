@@ -1,46 +1,69 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '../../atoms/Button/Button';
 import { ViewWrapper } from '../../molecules/ViewWrapper/ViewWrapper';
-import { ArticleWrapper, NewsSectionHeader, TittleWrapper, Wrapper } from './NewsSection.styles';
+import { ArticleWrapper, ContentWrapper, NewsSectionHeader, TittleWrapper, Wrapper } from './NewsSection.styles';
+import axios from 'axios';
 
-const data = [
-  {
-    title: 'New Computer at school',
-    category: 'Tech news',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea incidunt commodi perferendis, quam architecto distinctio et ipsa ex minima, vero ad est delectus perspiciatis eveniet amet nulla facilis molestias ullam.',
-  },
-  {
-    title: 'New Computer at school2',
-    category: 'Tech news',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea incidunt commodi perferendis, quam architecto distinctio et ipsa ex minima, vero ad est delectus perspiciatis eveniet amet nulla facilis molestias ullam.',
-    image: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-  },
+export const query = `
+{
+	allArticles {
+    id
+    title
+    category
+    content
+    image{
+      url
+    }
+  }
+}
 
-  {
-    title: 'New Computer at school3',
-    category: 'Tech news',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea incidunt commodi perferendis, quam architecto distinctio et ipsa ex minima, vero ad est delectus perspiciatis eveniet amet nulla facilis molestias ullam.',
-    image: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-  },
-];
+`;
+
 const NewsSection = () => {
+  const [articles, setArticles] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    console.log(process.env.REACT_APP_DATOCOM_TOKEN);
+    axios
+      .post(
+        'https://graphql.datocms.com/',
+        {
+          query,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${process.env.REACT_APP_DATOCOM_TOKEN}`,
+          },
+        }
+      )
+      .then(({ data: { data } }) => {
+        setArticles(data.allArticles);
+      })
+      .catch(() => {
+        setError(`Sorry, we couldn't load articles for youSomething went wrong`);
+      });
+  }, []);
   return (
     <Wrapper>
       <NewsSectionHeader>University news feed</NewsSectionHeader>
-      {data.map(({ title, category, content, image = null }) => (
-        <ArticleWrapper key={title}>
-          <TittleWrapper>
-            <h3>{title}</h3>
-            <p>{category}</p>
-          </TittleWrapper>
-          <p>{content}</p>
-          {image ? <img src={image} alt="news" /> : null}
-          <Button isBig>click me</Button>
-        </ArticleWrapper>
-      ))}
+      {articles.length > 0 ? (
+        articles.map(({ title, category, content, image = null }) => (
+          <ArticleWrapper key={title}>
+            <TittleWrapper>
+              <h3>{title}</h3>
+              <p>{category}</p>
+            </TittleWrapper>
+            <ContentWrapper>
+              <p>{content}</p>
+              {image ? <img src={image.url} alt="news" /> : null}
+            </ContentWrapper>
+            <Button isBig>click me</Button>
+          </ArticleWrapper>
+        ))
+      ) : (
+        <NewsSectionHeader>{error ? error : 'Loading...'}</NewsSectionHeader>
+      )}
     </Wrapper>
   );
 };

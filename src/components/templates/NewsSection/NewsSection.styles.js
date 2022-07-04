@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
   justify-context: flex-start;
   align-items: flex-start;
   padding: 50px;
+  overflow-y: scroll;
 `;
 
 export const NewsSectionHeader = styled.h2`
@@ -34,5 +35,14 @@ export const TittleWrapper = styled.div`
   }
   p {
     font-size: ${({ theme }) => theme.fontSize.m};
+  }
+`;
+
+export const ContentWrapper = styled.div`
+  display: flex;
+  img {
+    max-width: 200px;
+    margin-left: 35px;
+    object-fit: cover
   }
 `;

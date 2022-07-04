@@ -1,31 +1,31 @@
 export const users = [
   {
-    name: 'Adam Romański',
+    name: 'Lisa Mcgowan',
     attendance: '39%',
     average: '2.3',
   },
   {
-    name: 'Krzysztof Batko',
+    name: 'Cali Mendez',
     attendance: '23%',
     average: '3.3',
   },
   {
-    name: 'Patrycja Gonciarz',
+    name: 'River Harwood',
     attendance: '45%',
     average: '4.3',
   },
   {
-    name: 'Olga Hahn',
+    name: 'William Bender',
     attendance: '56%',
     average: '4.1',
   },
   {
-    name: 'Paweł Andrzejewski',
+    name: 'Eric Jaramillo',
     attendance: '29%',
     average: '2.4',
   },
   {
-    name: 'Paweł Roman',
+    name: 'Tahlia Skinner',
     average: '2.4',
   },
 ];
