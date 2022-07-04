@@ -53,6 +53,10 @@
     "eslint-plugin-prettier": "^4.0.0",
     "hysky": "^1.0.1",
     "lint-staged": "^12.3.8",
+    "msw": "^0.43.0",
     "prettier": "^2.6.2"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

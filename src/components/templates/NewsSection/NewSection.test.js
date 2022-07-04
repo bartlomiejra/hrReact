@@ -21,15 +21,13 @@ describe('News Section', () => {
 
   it('Displays the articles', async () => {
     mock.onPost('https://graphql.datocms.com/', { query }).reply(200, 
-	data:{
 
-	allArticles:	[{ 
-		id: 1, title: 'Test', category: 'Test', content: 'Test' 
-]},
-}
+	data: { allArticles:	[{  id: 1, title: 'Test', category: 'Test', content: 'Test'}]}
+
+
 
 	)};
-	
+
     renderWithProviders(<NewsSection />);
     await screen.findAllByText(/Test/);
   });
