@@ -6,7 +6,6 @@ import { Wrapper } from './Root.styles';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Switch } from 'react-router';
 
-import { users as usersData } from 'data/users';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import AddUser from 'views/AddUser';
 import Dashboard from 'views/Dashboard';
