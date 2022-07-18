@@ -11,9 +11,10 @@ const UsersProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get('/students')
-      .then((data => console.log(data))
-      .catch((err) => console.log(err))
+    axios
+      .get('/students')
+      .then(({ data }) => setUsers(data.students))
+      .catch((err) => console.log(err));
   }, []);
   const deleteUser = (name) => {
     const filteredUsers = users.filter((user) => user.name !== name);

@@ -3,28 +3,26 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'assets/styles/GlobalStyle';
 import { theme } from 'assets/styles/theme';
 import { Wrapper } from './Root.styles';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Switch } from 'react-router';
 
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import AddUser from 'views/AddUser';
 import Dashboard from 'views/Dashboard';
-import UsersPrivider from 'providers/UsersPrivider';
 const Root = () => {
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <MainTemplate>
-          <UsersPrivider>
-            <Wrapper>
-              <Routes>
-                <Route path="/add-user" element={<AddUser />} />
+          <Wrapper>
+            <Routes>
+              <Route path="/" element={<Navigate to="/group" replace />} />
+              <Route path="/add-user" element={<AddUser />} />
 
-                <Route path="/" element={<Dashboard />} />
-              </Routes>
-            </Wrapper>
-          </UsersPrivider>
+              <Route path="/group/:id?" element={<Dashboard />} />
+            </Routes>
+          </Wrapper>
         </MainTemplate>
       </ThemeProvider>
     </Router>
