@@ -5,9 +5,10 @@ import 'assets/styles/fonts.css';
 import { createRoot } from 'react-dom/client';
 import { worker } from 'mocks/browser';
 
-worker.start();
-createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Root />
-  </React.StrictMode>
-);
+worker.start().then(() => {
+  createRoot(document.getElementById('root')).render(
+    <React.StrictMode>
+      <Root />
+    </React.StrictMode>
+  );
+});

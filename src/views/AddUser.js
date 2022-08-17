@@ -6,7 +6,7 @@ import { UserShape } from 'types';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
 import { Title } from 'components/atoms/Title/Title';
 import { UsersContext } from 'providers/UsersPrivider';
-import { useForm } from 'Hooks/useForm';
+import { useForm } from 'hooks/useForm';
 
 const initialFormState = {
   name: '',

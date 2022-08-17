@@ -18,7 +18,7 @@ const Root = () => {
           <Wrapper>
             <Routes>
               <Route path="/" element={<Navigate to="/group" replace />} />
-              <Route path="/add-user" element={<AddUser />} />
+              {/* <Route path="/add-user" element={<AddUser />} /> */}
 
               <Route path="/group/:id?" element={<Dashboard />} />
             </Routes>
